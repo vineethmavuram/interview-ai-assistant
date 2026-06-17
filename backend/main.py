@@ -3,9 +3,13 @@ from pydantic import BaseModel
 import os
 from dotenv import load_dotenv
 from groq import Groq
+import json 
 
 # Load environment variables
 load_dotenv()
+
+with open("profile.json", "r") as f:
+    candidate_profile = json.load(f)
 
 # Get API key from .env
 api_key = os.getenv("GROQ_API_KEY")
@@ -42,18 +46,37 @@ def ask_question(req: QuestionRequest):
         prompt = f"""
 You are an interview assistant.
 
-The user is preparing for an interview.
+Answer as this candidate.
+
+Candidate Profile:
+
+Name:
+{candidate_profile['name']}
+
+Role:
+{candidate_profile['title']}
+
+Experience:
+{candidate_profile['experience_years']} years
+
+Skills:
+{', '.join(candidate_profile['skills'])}
+
+Responsibilities:
+{', '.join(candidate_profile['current_responsibilities'])}
+
+Projects:
+{', '.join(candidate_profile['projects'])}
 
 Question:
 {req.question}
 
-Provide:
-
-1. Professional Answer
-2. Keywords
-3. Interview Tips
-
-Keep the answer concise and easy to speak.
+Instructions:
+- Answer in first person.
+- Do not invent experience.
+- Keep answer interview-ready.
+- Keep answer under 60 seconds.
+- Provide keywords.
 """
 
         response = client.chat.completions.create(
@@ -64,7 +87,7 @@ Keep the answer concise and easy to speak.
                     "content": prompt
                 }
             ],
-            temperature=0.3
+            temperature=0.2
         )
 
         return {

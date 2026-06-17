@@ -1,0 +1,32 @@
+{
+  "name": "Vineeth Reddy Mavuram",
+  "title": "Data Engineer",
+  "experience_years": 4,
+  "current_company": "PALNI Inc",
+  "education": "MS Computer Science - University of Bridgeport",
+  "skills": [
+    "SQL",
+    "Python",
+    "PostgreSQL",
+    "MySQL",
+    "ETL",
+    "AWS",
+    "Data Quality",
+    "Pandas",
+    "Docker",
+    "GitHub"
+  ],
+  "current_responsibilities": [
+    "SQL impact analysis",
+    "Gap analysis",
+    "ETL pipelines",
+    "Data quality validation",
+    "Root cause analysis",
+    "AWS data processing"
+  ],
+  "projects": [
+    "Sentiment Analysis Dashboard",
+    "Cloud Native Task Processing Service",
+    "Data Processing Pipeline and Analytics Service"
+  ]
+}
